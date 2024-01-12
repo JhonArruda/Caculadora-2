@@ -14,10 +14,10 @@
             <p id="resultado"></p>
             <table>
                 <tr>
-                    <td><Button class="botao" onclick="insert('C')">C</Button></td>
-                    <td><Button class="botao" onclick="insert('<')"><</Button></td>
+                    <td><Button class="botao" onclick="clean('C')">C</Button></td>
+                    <td><Button class="botao" onclick="back('<')"><</Button></td>
                     <td><Button class="botao" onclick="insert('/')">/</Button></td>
-                    <td><Button class="botao" onclick="insert('X')">X</Button></td>
+                    <td><Button class="botao" onclick="insert('*')">x</Button></td>
                 </tr>
                 <tr>
                     <td><Button class="botao" onclick="insert('7')">7</Button></td>
@@ -35,7 +35,7 @@
                     <td><Button class="botao" onclick="insert('1')">1</Button></td>
                     <td><Button class="botao" onclick="insert('2')">2</Button></td>
                     <td><Button class="botao" onclick="insert('3')">3</Button></td>
-                    <td rowspan="2"><Button class="botao" id="igual" onclick="insert('=')">=</Button></td>
+                    <td rowspan="2"><Button class="botao" id="igual" onclick="calcular()">=</Button></td>
                 </tr>
                 <tr>
                     <td colspan="2"><Button class="botao" id="zero" onclick="insert('0')">0</Button></td>
@@ -46,8 +46,26 @@
     </div> 
     <script>
        function insert(num) {
-        document.getElementById('resultado').innerHTML = num
+        var numero = document.getElementById('resultado').innerHTML;
+        document.getElementById('resultado').innerHTML = numero + num;
        }
+       function clean() {
+        document.getElementById('resultado').innerHTML = "";
+       }
+       function back() {
+         var resultado = document.getElementById('resultado').innerHTML;
+         document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1)
+       }
+       function calcular() {
+        var resultado = document.getElementById('resultado').innerHTML;
+        if(resultado){
+        document.getElementById('resultado').innerHTML = eval(resultado);
+        }
+        else{
+        document.getElementById('resultado').innerHTML = "0";
+        }
+       }
+
     </script>
 </body>
 </html>
